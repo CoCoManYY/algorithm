@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chessboard cover</title>
+</head>
+<body>
+    <div id='num'>
+        <p>设置棋盘大小
+            <input name='N' size="4" type="text">
+        </p>
+        <p>请输入特殊方格的位置</p>
+        <p>
+            x:<input type="text" size="20" name="X"><br>
+            y:<input type="text" size="20" name="y">
+        </p>
+        <p>
+            <input type="button" value="设置棋盘参数">
+            <input type="button" value="生成棋盘">
+        </p>
+    </div>
+    <div id="chess">
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+window.onload=function(){
+    var chess = document.getElementById('chess');
+    var input = document.getElementsByTagName('input')[3];
+    input.onclick=function(){
+        var N = document.getElementsByTagName('input')[0].value;
+        var table = document.createElement('table');
+        chess.appendChild(table);
+        table.style.border='2px solid';
+        table.style.borderCollapse = 'collapse';
+        for(var i=0;i<N;i++){
+            var tr = document.createElement('tr');
+            table.appendChild(tr);
+            tr.style='height:20px;border:1px solid #ccc';
+            for(var j=0;j<N;j++){
+                var td = document.createElement('td');
+                tr.appendChild(td);
+                td.style='width:20px;border:1px solid #ccc';
+            }
+        }
+    }
+    var Out = document.getElementsByTagName('input')[4];
+    var Matrix = new Array();
+    // 初始化一个100*100的棋盘
+    for(var i=0;i<100;i++){
+        Matrix[i]=new Array();
+        for(var j=0;j<100;j++){
+            Matrix[i][j]=0;
+        }
+    }
+    Out.onclick=function(){
+        var r,c;
+        var params = document.getElementsByTagName('input');
+        var X=params[1].value;
+        var Y=params[2].value;
+        var N=params[0].value;
+        chessBoard(0,0,X-1,Y-1,N);
+        for(r=0;r<N;r++){
+            for(c=0;c<N;c++){
+                var q=Matrix[r][c];
+                var table=document.getElementsByTagName('table')[0];
+                // 用不同的背景色使得L型骨牌更容易区分
+                table.rows[r].cells[c].style.background='rgb('+13*q%256+','+43*q%256+','+73*q%256+')';
+            }
+        }
+    }
+    var nCount = 0;
+    function chessBoard(tr,tc,dr,dc,size){
+        if(size ===1) return;
+        var t = nCount++, s = size/2;
+        if(dr<tr+s&&dc<tc+s){
+            // 特殊方格在此内
+            chessBoard(tr,tc,dr,dc,s);
+        }
+        else{
+            // 此棋盘中没有特殊方格
+            Matrix[tr+s-1][tc+s-1]=t;
+            chessBoard(tr,tc,tr+s-1,tc+s-1,s);
+        }
+        if(dr<tr+s&&dc>=tc+s){
+            chessBoard(tr,tc+s,dr,dc,s);
+        }
+        else{
+            Matrix[tr+s-1][tc+s]=t;
+            chessBoard(tr,tc+s,tr+s-1,tc+s,s);
+        }
+        if(dr>=tr+s&&dc<tc+s){
+            chessBoard(tr+s,tc,dr,dc,s);
+        }
+        else{
+            Matrix[tr+s][tc+s-1]=t;
+            chessBoard(tr+s,tc,tr+s,tc+s-1,s);
+        }1
+        if(dr>=tr+s&&dc>=tc+s){
+            chessBoard(tr+s,tc+s,dr,dc,s);
+        }
+        else{
+            Matrix[tr+s][tc+s]=t;
+            chessBoard(tr+s,tc+s,tr+s,tc+s,s);
+        }
+    }
+}
+</script>
+
+
+<!-- 1、<document class="getelemname"> -->
+    <!-- 2、class优化 -->
