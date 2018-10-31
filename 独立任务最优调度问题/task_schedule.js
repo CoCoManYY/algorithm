@@ -24,7 +24,7 @@ function task_schedule(a,b,n,dp,sum){
         if(temp<min)
             min=temp;
     }
-    console.log(min);
+    console.log(min);//输出最小值
 }
 
 function main(){
@@ -41,6 +41,5 @@ function main(){
         dp[i]=new Array(sum+1).fill(0);
     }
     task_schedule(a,b,num,dp,sum);
-
 }
 main();
