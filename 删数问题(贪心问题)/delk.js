@@ -6,7 +6,7 @@
 function delk(){
    if(k>=m) return;
    while(k>0){
-       for(var i=0;i<m-1&&a[i]<a[i+1];i++);
+       for(var i=0;i<m-1&&a[i]<a[i+1];i++);//找到高位比低位大的值
        a.splice(i,1);
        k--;
    }
@@ -14,12 +14,13 @@ function delk(){
         a.splice(0,1);
 }
 function main(){
-    a=178543;//整数a
-    k=4;//删除的数字个数
+    a=321456;//整数a
+    k=3;//删除的数字个数
+    console.log(a,'删除',k,'位数后的最小值为：');
     a=a.toString();
     a=a.split('');
     m=a.length;//数字长度
     delk();
-    console.log(a);
+    console.log(a.join(''));
 }
 main();
