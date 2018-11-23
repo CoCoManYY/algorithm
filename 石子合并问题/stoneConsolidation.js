@@ -20,6 +20,7 @@ function stoneConsolidation(n){
             }
         }
     }
+    console.log(s);
 }
 //工具函数
 function max(x,y){

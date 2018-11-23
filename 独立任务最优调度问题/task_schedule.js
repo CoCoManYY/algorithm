@@ -18,6 +18,7 @@ function task_schedule(a,b,n,dp,sum){
         else  
             dp[i][j]=dp[i-1][j-a[i-1]];  
     }
+    console.log(dp);
     var min=Infinity;
     for(let i=0;i<=sum;i++){
         var temp=dp[n][i]>i?dp[n][i]:i;

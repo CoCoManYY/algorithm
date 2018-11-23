@@ -18,6 +18,7 @@
 // tips:预处理连续数字乘积和存放在m数组，dp[i][j]代表前i位有j个乘号。
 // dp[i][j]=max(dp[i][j],dp[k][j-1]*m[k+1][i]);    1<=k<i;
 function maxMul(){
+    console.log(m);
     for(let i=1;i<=n;i++){//枚举前i个数字
         for(let j=0;j<i;j++){//枚举乘号个数
             if(j==0){
