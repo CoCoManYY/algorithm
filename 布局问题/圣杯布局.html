@@ -5,6 +5,12 @@ margin-left的范围如果超过了container的内容，那么则会向上一行
 由于position为relative，那么left、right、top、button是关于当前位置的偏移值
 
 
+需要注意：
+1: 先写middle,然后是left和right，因为需要先渲染middle
+2: left、right需设置position:relative以及相应的left、right值
+3:理解负边距的作用，left的margin-left:-100%使它上移一行，同时right向左移占据left原先位置，同理，right的margin-left:-100px使它上移并靠右
+
+
 
 
 参考：https://blog.csdn.net/RogeDL/article/details/6461541
